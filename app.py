@@ -13,6 +13,8 @@ from src.utils.data_seed import seed_data
 from src.controllers.user_controller import UserResource, UserListResource, user_ns
 from src.controllers.auth_controller import AuthResource, auth_ns
 
+from src.models.about_me import AboutMeModel
+
 app = Flask(__name__)
 
 @app.route("/")
