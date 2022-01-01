@@ -13,6 +13,7 @@ class AboutMeSchema(Schema):
     short_desc = fields.String(required=True, 
         validate=validate.Length(40, 340, error=AboutMeMessage.JOB_TITLE_LEN_MSG), 
         error_messages={"required":AboutMeMessage.JOB_TITLE_REQ_MSG})
+    profile_photo = fields.Raw(required=True, error_messages={"required":AboutMeMessage.PROFILE_PHOTO_REQ_MSG})
     birth_date = fields.Date("%d.%m.%Y", error_messages={"format":AboutMeMessage.BIRTH_DATE_FORMAT_MSG})
     phone_number = fields.String(required=True, 
         validate=validate.Length(9, 20, error=AboutMeMessage.PHONE_NUMBER_LEN_MSG), error_messages={"required":AboutMeMessage.PHONE_NUMBER_REQ_MSG})

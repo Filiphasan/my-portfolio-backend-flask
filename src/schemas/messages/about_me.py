@@ -5,6 +5,7 @@ class AboutMeMessage:
     JOB_TITLE_REQ_MSG = "Title field is required!"
     SHORT_DESC_LEN_MSG = "Short Description field must be between 40 and 340 characters!"
     SHORT_DESC_REQ_MSG = "Short Description field is required!"
+    PROFILE_PHOTO_REQ_MSG = "Profile Photo field is required!"
     BIRTH_DATE_FORMAT_MSG = "Birth Date format is wrong! Must be like '01.01.1000'"
     PHONE_NUMBER_LEN_MSG = "Phone field must be between 9 and 20 characters!"
     PHONE_NUMBER_REQ_MSG = "Phone field is required!"
