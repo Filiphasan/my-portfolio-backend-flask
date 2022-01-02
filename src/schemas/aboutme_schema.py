@@ -31,6 +31,7 @@ class AboutMeGetSchema(Schema):
     full_name = fields.String()
     job_title = fields.String()
     short_desc = fields.String()
+    profile_photo = fields.String()
     birth_date = fields.String()
     phone_number = fields.String()
     email = fields.String()

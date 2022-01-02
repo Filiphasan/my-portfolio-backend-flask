@@ -12,14 +12,18 @@ import os
 from src.utils.data_seed import seed_data
 from src.controllers.user_controller import UserResource, UserListResource, user_ns
 from src.controllers.auth_controller import AuthResource, auth_ns
+from src.controllers.aboutme_controller import AboutMeListResource, AboutMeResource, aboutme_ns
 
-from src.models.about_me import AboutMeModel
 
 app = Flask(__name__)
 
 @app.route("/")
 def server():
     return "Server is Working!"
+
+@app.route("/favicon.ico")
+def return_icon():
+    return "https://simgbb.com/images/favicon.png"
 
 blueprint = Blueprint("api", __name__, url_prefix="/api")
 api = Api(blueprint, doc='/doc', title='Flask Rest Structure')
@@ -37,11 +41,14 @@ migrate = Migrate(app, db)
 # Implement Namespace In Api right below
 api.add_namespace(user_ns)
 api.add_namespace(auth_ns)
+api.add_namespace(aboutme_ns)
 
 #Implement Resource In NameSpace right below
 user_ns.add_resource(UserResource, '/<id>')
 user_ns.add_resource(UserListResource, '/')
 auth_ns.add_resource(AuthResource, '/')
+aboutme_ns.add_resource(AboutMeListResource, '/')
+aboutme_ns.add_resource(AboutMeResource, '/<id>')
 
 @app.before_first_request
 def create_table():

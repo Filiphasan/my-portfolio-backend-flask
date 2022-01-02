@@ -41,6 +41,7 @@ def edit_about_me(id: str, data):
             about_me.short_adress = data["short_adress"]
             about_me.updated_at = datetime.now()
             db.session.commit()
+            return aboutme_schema.dump(about_me), 200
         else: 
             return not_found_obj, 404
     except Exception as error:
