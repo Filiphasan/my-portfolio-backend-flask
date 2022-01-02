@@ -3,7 +3,7 @@ from db import db
 
 from src.models.about_me import AboutMeModel
 from src.schemas.aboutme_schema import AboutMeGetSchema
-from src.services import ServiceMessage, server_error_obj, not_found_obj
+from src.services import ServiceMessage
 from src.utils.response import success_data_response, error_response
 
 aboutmes_schema = AboutMeGetSchema(many=True)

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, Blueprint
+from flask import Flask, Blueprint, jsonify
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 from marshmallow import ValidationError
@@ -14,21 +14,11 @@ from src.controllers.user_controller import UserResource, UserListResource, user
 from src.controllers.auth_controller import AuthResource, auth_ns
 from src.controllers.aboutme_controller import AboutMeListResource, AboutMeResource, aboutme_ns
 
-# from src.models.skill import SkillModel
-# from src.models.tech_stack import TechStackModel
-# from src.models.experience import ExperienceModel
-# from src.models.experience_stack import ExperienceStackModel
-# from src.models.education import EducationModel
-
 app = Flask(__name__)
 
 @app.route("/")
 def server():
     return "Server is Working!"
-
-@app.route("/favicon.ico")
-def return_icon():
-    return "https://simgbb.com/images/favicon.png"
 
 blueprint = Blueprint("api", __name__, url_prefix="/api")
 api = Api(blueprint, doc='/doc', title='Flask Rest Structure')
