@@ -3,7 +3,8 @@ from db import db
 
 from src.models.about_me import AboutMeModel
 from src.schemas.aboutme_schema import AboutMeGetSchema
-from src.services import server_error_obj, not_found_obj
+from src.services import ServiceMessage, server_error_obj, not_found_obj
+from src.utils.response import success_data_response, error_response
 
 aboutmes_schema = AboutMeGetSchema(many=True)
 aboutme_schema = AboutMeGetSchema()
@@ -12,21 +13,23 @@ def list_aboutme():
     try:
         about_mes = AboutMeModel.query.filter_by(is_deleted=False).all()
         if about_mes:
-            return aboutmes_schema.dump(about_mes), 200
+            data = aboutmes_schema.dump(about_mes)
+            return success_data_response(data, 200)
         else:
-            return not_found_obj, 404
+            return error_response(ServiceMessage.NOT_FOUND, 404)
     except Exception as error:
-        return server_error_obj, 500
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
 
 def get_about_me(id: str):
     try:
         about_me = AboutMeModel.query.get(id)
         if about_me:
-            return aboutme_schema.dump(about_me), 200
+            data = aboutme_schema.dump(about_me)
+            return success_data_response(data, 200)
         else:
-            return not_found_obj, 404
+            return error_response(ServiceMessage.NOT_FOUND, 404)
     except Exception as error:
-        return server_error_obj, 500
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
 
 def edit_about_me(id: str, data):
     try:
@@ -41,9 +44,10 @@ def edit_about_me(id: str, data):
             about_me.short_adress = data["short_adress"]
             about_me.updated_at = datetime.now()
             db.session.commit()
-            return aboutme_schema.dump(about_me), 200
+            data = aboutme_schema.dump(about_me)
+            return success_data_response(data, 200)
         else: 
-            return not_found_obj, 404
+            return error_response(ServiceMessage.NOT_FOUND, 404)
     except Exception as error:
-        return server_error_obj, 500
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
 

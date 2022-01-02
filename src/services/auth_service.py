@@ -5,15 +5,10 @@ import hashlib
 import os
 
 from src.models.users import UsersModel
-from src.services import not_found_obj, email_not_confirmed_obj, server_error_obj
+from src.services import ServiceMessage
+from src.utils.response import success_token_response, error_response
 
 secret_key = os.environ.get("SECRET_KEY", 'application_secret_key')
-
-def token_obj(token: str) -> Dict:
-    return {
-        'status':'success',
-        'token':token
-    }
 
 def login(data):
     try:
@@ -23,14 +18,14 @@ def login(data):
         user = UsersModel.query.filter_by(email=email, password=password_hash).first()
         if user:
             if not user.email_confirmed:
-                return email_not_confirmed_obj, 401
+                return error_response(ServiceMessage.MAIL_NOT_CONFIRMED, 401)
             else:
                 token = create_token(user=user, role="user")
-                return token_obj(token=token), 200
+                return success_token_response(token, 200)
         else:
-            return not_found_obj, 404
+            return error_response(ServiceMessage.NOT_FOUND, 404)
     except Exception as error:
-        return server_error_obj, 500
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
 
 def create_token(user: UsersModel, role: str):
     token = jwt.encode({

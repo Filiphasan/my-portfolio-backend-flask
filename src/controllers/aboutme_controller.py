@@ -6,7 +6,7 @@ from src.schemas.aboutme_schema import AboutMeSchema
 
 aboutme_ns = Namespace('aboutme', "About Me Operations")
 
-aboutme_get_model = aboutme_ns.model("AboutMe Get",{
+aboutme_get_model = aboutme_ns.model("AboutMeGet",{
     "id": fields.String(),
     "full_name": fields.String(),
     "job_title": fields.String(),
@@ -18,7 +18,7 @@ aboutme_get_model = aboutme_ns.model("AboutMe Get",{
     "short_adress": fields.String()
 })
 
-aboutme_update_model = aboutme_ns.model("AboutMe Update",{
+aboutme_update_model = aboutme_ns.model("AboutMeUpdate",{
     "full_name": fields.String(),
     "job_title": fields.String(),
     "short_desc": fields.String(),
