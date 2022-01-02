@@ -14,6 +14,11 @@ from src.controllers.user_controller import UserResource, UserListResource, user
 from src.controllers.auth_controller import AuthResource, auth_ns
 from src.controllers.aboutme_controller import AboutMeListResource, AboutMeResource, aboutme_ns
 
+# from src.models.skill import SkillModel
+# from src.models.tech_stack import TechStackModel
+# from src.models.experience import ExperienceModel
+# from src.models.experience_stack import ExperienceStackModel
+# from src.models.education import EducationModel
 
 app = Flask(__name__)
 

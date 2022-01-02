@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Any
 from db import db
 
 from src.models.base import BaseModel

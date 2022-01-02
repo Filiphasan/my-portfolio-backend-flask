@@ -8,7 +8,7 @@ class TechStackModel(db.Model, BaseModel):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(60), nullable=False)
-    icon = db.Column(db.String(1000), nullable=False)
+    icon = db.Column(db.String(10000), nullable=False)
     is_icon_devicon = db.Column(db.Boolean, default=True ,nullable=False)
 
     def __init__(self, name: str, icon: str, is_icon_devicon:bool):
