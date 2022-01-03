@@ -15,6 +15,8 @@ class UsersModel(db.Model, BaseModel):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     email_confirmed = db.Column(db.Boolean, default=False, nullable=False)
+    #Role Relations
+    roles = db.relationship("UserRolesModel", backref="user_roles")
 
     def __init__(self, id, first_name, last_name, username, email, password_hash):
         self.id = id
