@@ -20,6 +20,7 @@ from src.models.experience import ExperienceModel
 from src.models.experience_stack import ExperienceStackModel
 from src.models.tech_stack import TechStackModel
 from src.models.user_roles import UserRolesModel
+from src.models.interest import InterestModel
 
 app = Flask(__name__)
 
