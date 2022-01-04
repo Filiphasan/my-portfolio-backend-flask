@@ -21,6 +21,12 @@ from src.models.experience_stack import ExperienceStackModel
 from src.models.tech_stack import TechStackModel
 from src.models.user_roles import UserRolesModel
 from src.models.interest import InterestModel
+from src.models.contact import ContactModel
+from src.models.category import CategoryModel
+from src.models.comment import CommentModel
+from src.models.article import ArticleModel
+from src.models.article_tag import ArticleTagModel
+from src.models.tag import TagModel
 
 app = Flask(__name__)
 
