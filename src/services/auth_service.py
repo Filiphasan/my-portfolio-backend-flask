@@ -32,7 +32,7 @@ def create_token(user: UsersModel, role: str):
         'sub': user.id,
         'exp': datetime.datetime.now()+datetime.timedelta(minutes=120),
         'iat': datetime.datetime.now(),
-        'roles': [role]
+        'roles': role
     },secret_key, algorithm='HS256')
     return token
 

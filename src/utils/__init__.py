@@ -6,3 +6,7 @@ invalid_token_obj ={
     'status': 'error',
     'message': 'Invalid Token!'
 }
+not_authorized_obj ={
+    'status': 'error',
+    'message': 'You are not authorized this area!'
+}
