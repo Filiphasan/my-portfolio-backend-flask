@@ -6,7 +6,7 @@ from src.models.base import BaseModel
 class AboutMeModel(db.Model, BaseModel):
     __tablename__ = 'about_me'
 
-    id = db.Column(db.String(128), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     full_name = db.Column(db.String(70), nullable=False)
     job_title = db.Column(db.String(120), nullable=False)
     short_desc = db.Column(db.String(340), nullable=False)

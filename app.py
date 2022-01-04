@@ -70,6 +70,7 @@ def handler_global_error(error):
     code = 500
     if isinstance(error, HTTPException):
         code = error.code
+    # return jsonify({"status":"error","message":"Ooops! Something went wrong!"}), code #This is for production.
     return jsonify({"status":"error","message":str(error)}), code
 
 if __name__ == "__main__":
