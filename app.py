@@ -14,6 +14,7 @@ from src.controllers.user_controller import UserResource, UserListResource, user
 from src.controllers.auth_controller import AuthResource, auth_ns
 from src.controllers.aboutme_controller import AboutMeListResource, AboutMeResource, aboutme_ns
 
+#Import db table classes because alembic doesn't detected table models. User doesn't need import because user resource import user service and user service import user model.
 from src.models.skill import SkillModel
 from src.models.education import EducationModel
 from src.models.experience import ExperienceModel
