@@ -8,5 +8,5 @@ invalid_token_obj ={
 }
 not_authorized_obj ={
     'status': 'error',
-    'message': 'You are not authorized this area!'
+    'message': 'Unauthorized Area!'
 }
