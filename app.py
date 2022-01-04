@@ -64,7 +64,7 @@ aboutme_ns.add_resource(AboutMeResource, '/<id>')
 def create_table():
     # If you use flask migrate with alembic, don't need this method. We create and edit table with flask-migrate.
     # db.create_all()
-    seed_data()
+    seed_data() #This is data seed method.
 
 # If Marshmallow load data not successful, Marshmallow return ValidationError and error descriptions.
 @app.errorhandler(ValidationError)
