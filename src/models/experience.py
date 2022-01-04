@@ -21,3 +21,6 @@ class ExperienceModel(db.Model, BaseModel):
         self.start_date = datetime.strptime(start_date, "%d.%m.%Y").date()
         self.end_date = datetime.strptime(end_date, "%d.%m.%Y").date()
         self.description = description
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        self.is_deleted = False

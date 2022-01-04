@@ -1,3 +1,4 @@
+from datetime import datetime
 from db import db
 
 from src.models.base import BaseModel
@@ -14,3 +15,6 @@ class UserRolesModel(db.Model, BaseModel):
     def __init__(self, user_id: str, role: str):
         self.user_id = user_id
         self.role = role
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        self.is_deleted = False
