@@ -9,6 +9,7 @@ class ProjectModel(db.Model, BaseModel):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(300), nullable=False)
+    release_date = db.Column(db.Date, nullable=False)
     has_repo = db.Column(db.Boolean, default=True, nullable=False)
     repo_url = db.Column(db.String(240), nullable=True)
     has_demo = db.Column(db.Boolean, default=True, nullable=False)
