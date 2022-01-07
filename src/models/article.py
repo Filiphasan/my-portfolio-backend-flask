@@ -11,7 +11,7 @@ class ArticleModel(db.Model, BaseModel):
     thumbnail = db.Column(db.String(240), nullable=True)
     short_content = db.Column(db.String(400), nullable=False)
     content = db.Column(db.String, nullable=False)
-    category_id = db.Column(db.Integer, nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"), nullable=False)
     category = db.relationship("CategoryModel", backref="articles")
     views_count = db.Column(db.Integer, default=0, nullable=False)
     seo_tags = db.Column(db.String(150), default="Software, Flask, Python, .Net Core, Web, Developer, JavaScript, React, Asp.Net, HTML5, CSS3, Web Development, Mobile, React Native", nullable=False)

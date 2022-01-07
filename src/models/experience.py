@@ -12,8 +12,6 @@ class ExperienceModel(db.Model, BaseModel):
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False)
     description = db.Column(db.String(300), nullable=False)
-    #Experience Stack Many 
-    experience_stacks = db.relationship('ExperienceStackModel', backref='experiences') #I don't need this, just this is easy way for data join.
 
     def __init__(self, title: str, company: str, start_date: str, end_date: str, description: str):
         self.title = title
