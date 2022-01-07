@@ -28,6 +28,7 @@ from src.models.comment import CommentModel
 from src.models.article import ArticleModel
 from src.models.article_tag import ArticleTagModel
 from src.models.tag import TagModel
+from src.models.project import ProjectModel
 
 app = Flask(__name__)
 
