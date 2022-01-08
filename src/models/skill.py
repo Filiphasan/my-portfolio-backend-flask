@@ -14,12 +14,10 @@ class SkillModel(db.Model, BaseModel):
     bg_color_from = db.Column(db.String(20), nullable=True)
     bg_color_to = db.Column(db.String(20), nullable=True)
 
-    def __init__(self, name: str, skill_level: int, icon: str, bg_color_from: str, bg_color_to: str):
+    def __init__(self, name: str, icon: str, is_icon_svg: bool):
         self.name = name
-        self.skill_level = skill_level
         self.icon = icon
-        self.bg_color_from = bg_color_from
-        self.bg_color_to = bg_color_to
+        self.is_icon_svg = is_icon_svg
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
         self.is_deleted = False

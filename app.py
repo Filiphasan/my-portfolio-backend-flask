@@ -13,9 +13,9 @@ from src.utils.data_seed import seed_data
 from src.controllers.user_controller import UserResource, UserListResource, user_ns
 from src.controllers.auth_controller import AuthResource, auth_ns
 from src.controllers.aboutme_controller import AboutMeListResource, AboutMeResource, aboutme_ns
+from src.controllers.skill_controller import SkillResource, SkillsResource, skill_ns
 
 #Import db table classes because alembic doesn't detected table models. User doesn't need import because user resource import user service and user service import user model.
-from src.models.skill import SkillModel
 from src.models.education import EducationModel
 from src.models.experience import ExperienceModel
 from src.models.experience_stack import ExperienceStackModel
@@ -53,6 +53,7 @@ migrate = Migrate(app, db)
 api.add_namespace(user_ns)
 api.add_namespace(auth_ns)
 api.add_namespace(aboutme_ns)
+api.add_namespace(skill_ns)
 
 #Implement Resource In NameSpace right below
 user_ns.add_resource(UserResource, '/<id>')
@@ -60,6 +61,8 @@ user_ns.add_resource(UserListResource, '/')
 auth_ns.add_resource(AuthResource, '/')
 aboutme_ns.add_resource(AboutMeListResource, '/')
 aboutme_ns.add_resource(AboutMeResource, '/<id>')
+skill_ns.add_resource(SkillResource, '/<id>')
+skill_ns.add_resource(SkillsResource, '/')
 
 @app.before_first_request
 def create_table():
