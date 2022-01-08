@@ -31,6 +31,7 @@ def save_new_user(user_data):
             )
             db.session.add(new_user)
             db.session.commit()
+            db.session.refresh(new_user)
             data = user_schema.dump(new_user)
             return success_data_response(data, 201)
     except:
