@@ -29,6 +29,7 @@ from src.models.article import ArticleModel
 from src.models.article_tag import ArticleTagModel
 from src.models.tag import TagModel
 from src.models.project import ProjectModel
+from src.models.project_stack import ProjectStackModel
 
 app = Flask(__name__)
 

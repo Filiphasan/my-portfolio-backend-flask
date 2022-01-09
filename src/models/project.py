@@ -15,9 +15,10 @@ class ProjectModel(db.Model, BaseModel):
     has_demo = db.Column(db.Boolean, default=True, nullable=False)
     demo_url = db.Column(db.String(240), nullable=True)
 
-    def __init__(self, name: str, description: str, has_repo: bool, repo_url: str, has_demo: str, demo_url: str):
+    def __init__(self, name: str, description: str, release_date: str, has_repo: bool, repo_url: str, has_demo: str, demo_url: str):
         self.name = name
         self.description = description
+        self.release_date = datetime.strptime(release_date, "%Y-%m-%d")
         self.has_repo = has_repo
         self.repo_url = repo_url
         self.has_demo = has_demo
