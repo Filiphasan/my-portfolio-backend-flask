@@ -23,7 +23,7 @@ def list_skills():
 def get_skill(id):
     try:
         skill = SkillModel.query.filter_by(id=id).first()
-        if skill:
+        if skill and not skill.is_deleted:
             data = skill_schema.dump(skill)
             return success_data_response(data, 200)
         else:
@@ -52,8 +52,8 @@ def update_skill(id, data):
         if skill:
             skill.name = data["name"]
             skill.icon = data["icon"]
-            skill.is_icon_svg["is_icon_svg"]
-            skill.updated_at = datetime.no()
+            skill.is_icon_svg = data["is_icon_svg"]
+            skill.updated_at = datetime.now()
             db.session.commit()
             return_data = skill_schema.dump(skill)
             return success_data_response(return_data, 200)
