@@ -9,9 +9,9 @@ class EducationAddEditSchema(Schema):
         validate=validate.Length(10, 100, error=EducationMessages.TITLE_LEN_MSG),
         error_messages={"required":EducationMessages.TITLE_REQ_MSG})
     begin_date = fields.Date(format="%Y-%m-%d", required=True,
-        error_messages={"required":EducationMessages.BEGIN_DATE_REQ_MSG,"format":EducationMessages.BEGIN_DATE_FORMAT_MSG})
+        error_messages={"required":EducationMessages.BEGIN_DATE_REQ_MSG,"invalid":EducationMessages.BEGIN_DATE_FORMAT_MSG})
     end_date = fields.Date(format="%Y-%m-%d", required=True,
-        error_messages={"required":EducationMessages.END_DATE_REQ_MSG,"format":EducationMessages.END_DATE_FORMAT_MSG})
+        error_messages={"required":EducationMessages.END_DATE_REQ_MSG,"invalid":EducationMessages.END_DATE_FORMAT_MSG})
     avarage = fields.String(required=True,
         validate=validate.Length(3, 20, error=EducationMessages.AVARAGE_LEN_MSG),
         error_messages={"required":EducationMessages.AVARAGE_REQ_MSG})

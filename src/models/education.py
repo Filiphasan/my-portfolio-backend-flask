@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 from db import db
 
 from src.models.base import BaseModel
@@ -14,11 +14,11 @@ class EducationModel(db.Model, BaseModel):
     avarage = db.Column(db.String(20), nullable=True)
     description = db.Column(db.String(400), nullable=False)
 
-    def __init__(self, institution: str, title: str, begin_date: str, end_date: str, avarage: str, description: str):
+    def __init__(self, institution: str, title: str, begin_date: date, end_date: date, avarage: str, description: str):
         self.institution = institution
         self.title = title
-        self.begin_date = datetime.strptime(begin_date, "%Y-%m-%d")
-        self.end_date = datetime.strptime(end_date, "%Y-%m-%d")
+        self.begin_date = begin_date
+        self.end_date = end_date
         self.avarage = avarage
         self.description = description
         self.created_at = datetime.now()
