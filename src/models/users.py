@@ -18,7 +18,7 @@ class UsersModel(db.Model, BaseModel):
     email_confirmed = db.Column(db.Boolean, default=False, nullable=False)
     role = db.Column(db.String(20), default="member", nullable=False)
 
-    def __init__(self, id, first_name, last_name, username, email, password_hash, role=Roles.member):
+    def __init__(self, id, first_name, last_name, username, email, password_hash, role=Roles.member.value):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
