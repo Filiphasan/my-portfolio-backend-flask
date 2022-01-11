@@ -9,10 +9,9 @@ class ExperienceStackModel(db.Model, BaseModel):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     #Experience Relation
     experience_id = db.Column(db.Integer, db.ForeignKey("experiences.id"), nullable=False)
-    experience = db.relationship("ExperienceModel", backref="experience_stacks")
     #Tech Stack Relation
     tech_stack_id = db.Column(db.Integer, db.ForeignKey("tech_stacks.id"), nullable=False)
-    tech_stack = db.relationship("TechStackModel", backref="experience_stacks")
+    tech_stack = db.relationship("TechStackModel", backref="experience_stacks", lazy=True)
     
     def __init__(self, experience_id: int, tech_stack_id: int):
         self.experience_id = experience_id

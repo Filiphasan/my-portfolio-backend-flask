@@ -19,3 +19,9 @@ class TechStachGetSchema(Schema):
     is_icon_devicon = fields.Boolean()
     created_at = fields.DateTime(format="%Y-%m-%d %H:%M")
     updated_at = fields.DateTime(format="%Y-%m-%d %H:%M")
+
+class TechStachGetSchemaForExpStack(Schema):
+    id = fields.Integer()
+    name = fields.String()
+    icon = fields.String()
+    is_icon_devicon = fields.Boolean()

@@ -1,0 +1,13 @@
+class ExperienceMessage:
+    TITLE_REQ_MSG = "Title field is required!"
+    TITLE_LEN_MSG = "Title field must be between 10 and 100 characters!"
+    COMPANY_REQ_MSG = "Company field is required!"
+    COMPANY_LEN_MSG = "Company field must be between 5 and 100 characters!"
+    START_DATE_REQ_MSG = "Start Date field is required!"
+    START_DATE_FORMAT_MSG = "Start Date field must be like '2022-01-30'!"
+    END_DATE_REQ_MSG = "End Date field is required!"
+    END_DATE_FORMAT_MSG = "End Date field must be like '2022-01-30'!"
+    DESC_REQ_MSG = "Description field is required!"
+    DESC_LEN_MSG = "Description field must be between 30 and 300 characters!"
+    STACKS_REQ_MSG = "Tech Stacks field is required!"
+    STACKS_LEN_MSG = "Tech Stacks field must has min 1 item!"

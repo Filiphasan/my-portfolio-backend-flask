@@ -12,6 +12,7 @@ class ExperienceModel(db.Model, BaseModel):
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False)
     description = db.Column(db.String(300), nullable=False)
+    experience_stacks = db.relationship('ExperienceStackModel', backref='experiences', lazy=True)
 
     def __init__(self, title: str, company: str, start_date: date, end_date: date, description: str):
         self.title = title
