@@ -19,7 +19,6 @@ from src.controllers.tech_stack_controller import TechStackResource, TechsResour
 from src.controllers.experience_controller import ExperiencesResource, ExperienceResource, experience_ns
 
 #Import db table classes because alembic doesn't detected table models. User doesn't need import because user resource import user service and user service import user model.
-from src.models.user_roles import UserRolesModel
 from src.models.interest import InterestModel
 from src.models.contact import ContactModel
 from src.models.category import CategoryModel

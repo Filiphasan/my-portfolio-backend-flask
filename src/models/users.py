@@ -1,6 +1,7 @@
 from datetime import datetime
 from db import db
 from .base import BaseModel
+from src.utils.role_enum import Roles
 
 
 class UsersModel(db.Model, BaseModel):
@@ -15,10 +16,9 @@ class UsersModel(db.Model, BaseModel):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     email_confirmed = db.Column(db.Boolean, default=False, nullable=False)
-    #Role Relations
-    roles = db.relationship("UserRolesModel", backref="user_roles")
+    role = db.Column(db.String(20), default="member", nullable=False)
 
-    def __init__(self, id, first_name, last_name, username, email, password_hash):
+    def __init__(self, id, first_name, last_name, username, email, password_hash, role=Roles.member):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
@@ -27,6 +27,7 @@ class UsersModel(db.Model, BaseModel):
         self.email = email
         self.password = password_hash
         self.email_confirmed = False
+        self.role = role
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
         self.is_deleted = False
