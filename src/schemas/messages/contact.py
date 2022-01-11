@@ -1,0 +1,11 @@
+class ContactMessage:
+    FIRST_NAME_REQ_MSG = "First Name field is required!"
+    FIRST_NAME_LEN_MSG = "First Name field must be between 2 and 35 characters!"
+    LAST_NAME_REQ_MSG = "Last Name field is required!"
+    LAST_NAME_LEN_MSG = "Last Name field must be between 2 and 35 characters!"
+    MAIL_REQ_MSG = "EMail field is required!"
+    MAIL_FORMAT_MSG = "EMail is wrong!"
+    SUBJ_REQ_MSG = "Subject field is required!"
+    SUBJ_LEN_MSG = "Subject field must be between 5 and 100 characters!"
+    MESSAGE_REQ_MSG = "Message field is required!"
+    MESSAGE_LEN_MSG = "Message field must be between 10 and 500 characters!"
