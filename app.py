@@ -46,7 +46,7 @@ app.config["PROPAGATE_EXCEPTIONS"] = True
 app.secret_key = os.environ.get("SECRET_KEY", 'application_secret_key') #Example: c094b11d-8eb1-450b-949a-f83d9564c923
 db.init_app(app)
 ma.init_app(app)
-migrate = Migrate(app, db)
+migrate = Migrate(app, db, compare_type=True) #compare_type=True, if change column property(length) alembic not detect, s
 
 # Implement Namespace In Api right below
 api.add_namespace(user_ns)
