@@ -14,6 +14,7 @@ class ArticleModel(db.Model, BaseModel):
     category_id = db.Column(db.Integer, db.ForeignKey("categories.id"), nullable=False)
     category = db.relationship("CategoryModel", backref="articles")
     views_count = db.Column(db.Integer, default=0, nullable=False)
+    tags = db.relationship("ArticleTagModel", backref="articles", lazy=True)
     seo_tags = db.Column(db.String(150), default="Software, Flask, Python, .Net Core, Web, Developer, JavaScript, React, Asp.Net, HTML5, CSS3, Web Development, Mobile, React Native", nullable=False)
     seo_description = db.Column(db.String(150), default="", nullable=False)
 

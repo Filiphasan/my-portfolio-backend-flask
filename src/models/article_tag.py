@@ -9,7 +9,7 @@ class ArticleTagModel(db.Model, BaseModel):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     article_id = db.Column(db.Integer, db.ForeignKey("articles.id"), nullable=False)
     tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), nullable=False)
-    tag = db.relationship("TagModel", backref="article_tags")
+    tag = db.relationship("TagModel", backref="article_tags", lazy=True)
 
     def __init__(self, article_id: int, tag_id: int):
         self.article_id = article_id
