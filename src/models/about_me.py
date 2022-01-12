@@ -16,8 +16,7 @@ class AboutMeModel(db.Model, BaseModel):
     email = db.Column(db.String(150), nullable=False)
     short_adress = db.Column(db.String(50), nullable=False)
 
-    def __init__(self, id: str, full_name: str, job_title: str, short_desc: str, profile_photo: str, birth_date: str, phone_number: str, email: str, short_adress: str):
-        self.id = id
+    def __init__(self, full_name: str, job_title: str, short_desc: str, profile_photo: str, birth_date: str, phone_number: str, email: str, short_adress: str):
         self.full_name = full_name
         self.job_title = job_title
         self.short_desc = short_desc

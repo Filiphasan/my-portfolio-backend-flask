@@ -12,8 +12,8 @@ def seed_data():
         #password=123456
         db.session.add(user1)
         db.session.commit()
-    about_me = AboutMeModel.query.get("c5caf159-690c-4285-be93-186b14df6f35")
+    about_me = AboutMeModel.query.get(1)
     if not about_me:
-        about_me1 = AboutMeModel(id="c5caf159-690c-4285-be93-186b14df6f35",full_name="Hasan Erdal",job_title="Jr. Full Stack Developer",short_desc="I am a Jr. Full Stack Developer. I'm interested in .Net, Asp.Net, Reactjs, JavaScript, React Native",profile_photo="",birth_date="1998-06-17",phone_number="+905370352059",email="hasaerda@hotmail.com",short_adress="Şahinbey/Gaziantep, Turkey")
+        about_me1 = AboutMeModel(full_name="Hasan Erdal",job_title="Jr. Full Stack Developer",short_desc="I am a Jr. Full Stack Developer. I'm interested in .Net, Asp.Net, Reactjs, JavaScript, React Native",profile_photo="",birth_date="1998-06-17",phone_number="+905370352059",email="hasaerda@hotmail.com",short_adress="Şahinbey/Gaziantep, Turkey")
         db.session.add(about_me1)
         db.session.commit()
