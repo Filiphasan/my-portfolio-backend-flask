@@ -22,9 +22,9 @@ from src.controllers.contact_controller import ContactsResource, ContactResource
 from src.controllers.category_controller import CategoriesResource, CategoryResource, category_ns
 from src.controllers.article_controller import ArticlesResource, ArticlesCategoryResource, ArticleResource, article_ns
 from src.controllers.tag_controller import TagsResource, TagResource, tag_ns
+from src.controllers.comment_controller import CommentsResource, CommentResource, comment_ns
 
 #Import db table classes because alembic doesn't detected table models. User doesn't need import because user resource import user service and user service import user model.
-from src.models.comment import CommentModel
 from src.models.project import ProjectModel
 from src.models.project_stack import ProjectStackModel
 
@@ -60,6 +60,7 @@ api.add_namespace(contact_ns)
 api.add_namespace(category_ns)
 api.add_namespace(article_ns)
 api.add_namespace(tag_ns)
+api.add_namespace(comment_ns)
 
 #Implement Resource In NameSpace right below
 user_ns.add_resource(UserResource, '/<id>')
@@ -86,6 +87,8 @@ article_ns.add_resource(ArticlesResource, '/')
 article_ns.add_resource(ArticleResource, '/<id>')
 tag_ns.add_resource(TagsResource, '/')
 tag_ns.add_resource(TagResource, '/<id>')
+comment_ns.add_resource(CommentsResource, '/')
+comment_ns.add_resource(CommentResource, '/<id>')
 
 @app.before_first_request
 def create_table():
