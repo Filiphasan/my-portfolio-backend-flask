@@ -8,7 +8,6 @@ class ProjectStackModel(db.Model, BaseModel):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     #Project Realtion
     project_id = db.Column(db.Integer, db.ForeignKey("projects.id"), nullable=False)
-    project = db.relationship("ProjectModel", backref="project_stacks")
     #Tech Stack Relation
     tech_stack_id = db.Column(db.Integer, db.ForeignKey("tech_stacks.id"), nullable=False)
     tech_stack = db.relationship("TechStackModel", backref="project_stacks")

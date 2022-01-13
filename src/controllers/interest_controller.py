@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace, fields
 from flask import request
 
-from src.schemas.interst_schema import InterestAddEditSchema
+from src.schemas.interest_schema import InterestAddEditSchema
 from src.services.interest_service import list_interest, get_interest, add_interest, edit_interest, soft_delete_interest
 
 interest_ns = Namespace("interest", "Interests CRUD Operations")

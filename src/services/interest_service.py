@@ -1,7 +1,7 @@
 from datetime import datetime
 from db import db
 
-from src.schemas.interst_schema import InterestGetSchema
+from src.schemas.interest_schema import InterestGetSchema
 from src.utils.response import success_response, success_data_response, error_response
 from src.services import ServiceMessage
 from src.models.interest import InterestModel
