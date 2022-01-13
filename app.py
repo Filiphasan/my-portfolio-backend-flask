@@ -20,12 +20,11 @@ from src.controllers.experience_controller import ExperiencesResource, Experienc
 from src.controllers.interest_controller import InterestsResource, InterestResource, interest_ns
 from src.controllers.contact_controller import ContactsResource, ContactResource, contact_ns
 from src.controllers.category_controller import CategoriesResource, CategoryResource, category_ns
+from src.controllers.article_controller import ArticlesResource, ArticlesCategoryResource, ArticleResource, article_ns
+from src.controllers.tag_controller import TagsResource, TagResource, tag_ns
 
 #Import db table classes because alembic doesn't detected table models. User doesn't need import because user resource import user service and user service import user model.
 from src.models.comment import CommentModel
-from src.models.article import ArticleModel
-from src.models.article_tag import ArticleTagModel
-from src.models.tag import TagModel
 from src.models.project import ProjectModel
 from src.models.project_stack import ProjectStackModel
 
@@ -59,6 +58,8 @@ api.add_namespace(experience_ns)
 api.add_namespace(interest_ns)
 api.add_namespace(contact_ns)
 api.add_namespace(category_ns)
+api.add_namespace(article_ns)
+api.add_namespace(tag_ns)
 
 #Implement Resource In NameSpace right below
 user_ns.add_resource(UserResource, '/<id>')
@@ -80,6 +81,11 @@ contact_ns.add_resource(ContactsResource, '/')
 contact_ns.add_resource(ContactResource, '/<id>')
 category_ns.add_resource(CategoriesResource, '/')
 category_ns.add_resource(CategoryResource, '/<id>')
+article_ns.add_resource(ArticlesCategoryResource, '/category/<category_id>')
+article_ns.add_resource(ArticlesResource, '/')
+article_ns.add_resource(ArticleResource, '/<id>')
+tag_ns.add_resource(TagsResource, '/')
+tag_ns.add_resource(TagResource, '/<id>')
 
 @app.before_first_request
 def create_table():
@@ -90,7 +96,7 @@ def create_table():
 # If Marshmallow load data not successful, Marshmallow return ValidationError and error descriptions.
 @app.errorhandler(ValidationError)
 def handle_validation_error(error):
-    return jsonify(error.messages), 400
+    return jsonify({"status":"error", "status-code":"400", "errors":error.messages}), 400
 
 # Global Error Handling
 @app.errorhandler(Exception)
