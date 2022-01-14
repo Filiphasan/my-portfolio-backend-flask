@@ -13,10 +13,10 @@ class AboutMeSchema(Schema):
     short_desc = fields.String(required=True, 
         validate=validate.Length(40, 340, error=AboutMeMessage.JOB_TITLE_LEN_MSG), 
         error_messages={"required":AboutMeMessage.JOB_TITLE_REQ_MSG})
-    profile_photo = fields.Raw(required=True, error_messages={"required":AboutMeMessage.PROFILE_PHOTO_REQ_MSG})
-    birth_date = fields.Date("%d.%m.%Y", error_messages={"format":AboutMeMessage.BIRTH_DATE_FORMAT_MSG})
+    profile_photo = fields.String(required=True, error_messages={"required":AboutMeMessage.PROFILE_PHOTO_REQ_MSG})
+    birth_date = fields.Date(format="%Y-%m-%d", error_messages={"format":AboutMeMessage.BIRTH_DATE_FORMAT_MSG})
     phone_number = fields.String(required=True, 
-        validate=validate.Length(9, 20, error=AboutMeMessage.PHONE_NUMBER_LEN_MSG), error_messages={"required":AboutMeMessage.PHONE_NUMBER_REQ_MSG})
+        validate=validate.Length(9, 25, error=AboutMeMessage.PHONE_NUMBER_LEN_MSG), error_messages={"required":AboutMeMessage.PHONE_NUMBER_REQ_MSG})
     email = fields.String(
         required=True, 
         validate=[validate.Regexp("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", error=AboutMeMessage.MAIL_REGEX_MSG),

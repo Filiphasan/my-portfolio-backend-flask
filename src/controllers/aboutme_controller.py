@@ -4,7 +4,7 @@ from flask import request
 from src.services.aboutme_service import list_aboutme, get_about_me, edit_about_me
 from src.schemas.aboutme_schema import AboutMeSchema
 
-aboutme_ns = Namespace('aboutme', "About Me Operations")
+aboutme_ns = Namespace('aboutme', "About Me RUD Operations")
 
 aboutme_get_model = aboutme_ns.model("AboutMeGet",{
     "id": fields.String(),

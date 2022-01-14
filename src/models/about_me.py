@@ -12,7 +12,7 @@ class AboutMeModel(db.Model, BaseModel):
     short_desc = db.Column(db.String(340), nullable=False)
     profile_photo = db.Column(db.String(250), nullable=False)
     birth_date = db.Column(db.Date, nullable=False)
-    phone_number = db.Column(db.String(15), nullable=False)
+    phone_number = db.Column(db.String(25), nullable=False)
     email = db.Column(db.String(150), nullable=False)
     short_adress = db.Column(db.String(50), nullable=False)
 

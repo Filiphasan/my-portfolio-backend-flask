@@ -38,6 +38,7 @@ def edit_about_me(id: str, data):
             about_me.full_name = data["full_name"]
             about_me.job_title = data["job_title"]
             about_me.short_desc = data["short_desc"]
+            about_me.profile_photo = data["profile_photo"]
             about_me.birth_date = data["birth_date"]
             about_me.phone_number = data["phone_number"]
             about_me.email = data["email"]
@@ -49,5 +50,5 @@ def edit_about_me(id: str, data):
         else: 
             return error_response(ServiceMessage.NOT_FOUND, 404)
     except Exception as error:
-        return error_response(ServiceMessage.SERVER_ERROR, 500)
+        return error_response(str(error), 500)
 
