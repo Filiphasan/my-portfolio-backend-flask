@@ -16,7 +16,7 @@ interest_add_edit_model = interest_ns.model("InterestAddEditModel", {
     "title": fields.String()
 })
 
-@interest_ns.route("/")
+@interest_ns.route("")
 class InterestsResource(Resource):
     @interest_ns.doc("Get Interest List")
     @interest_ns.response(200, "Success", [interest_get_model])

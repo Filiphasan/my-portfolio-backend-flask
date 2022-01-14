@@ -67,7 +67,7 @@ class UserResource(Resource):
     def delete(self, id):
         return soft_delete_user(id)
 
-@user_ns.route("/")
+@user_ns.route("")
 class UserListResource(Resource):
     @user_ns.doc("Get User List")
     @user_ns.response(200,"Get Success",model= [user])

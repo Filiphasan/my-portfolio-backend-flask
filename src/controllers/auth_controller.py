@@ -16,7 +16,7 @@ login_success = auth_ns.model("Login Success", {
     'access_token': fields.String()
 })
 
-@auth_ns.route("/")
+@auth_ns.route("")
 class AuthResource(Resource):
     @auth_ns.doc("Login")
     @auth_ns.expect(login_model)

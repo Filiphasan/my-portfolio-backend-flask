@@ -31,7 +31,7 @@ aboutme_update_model = aboutme_ns.model("AboutMeUpdate",{
 
 aboutme_update_schema = AboutMeSchema()
 
-@aboutme_ns.route("/")
+@aboutme_ns.route("")
 class AboutMeListResource(Resource):
     @aboutme_ns.doc("Get About Me List")
     @aboutme_ns.response(200, "Get List Success", [aboutme_get_model])

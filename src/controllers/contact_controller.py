@@ -24,7 +24,7 @@ contact_add_model = contact_ns.model("ContactAddModel", {
     "message": fields.String()
 })
 
-@contact_ns.route("/")
+@contact_ns.route("")
 class ContactsResource(Resource):
     @contact_ns.doc("Get Contact List")
     @contact_ns.response(200, "Success", [contact_get_model])

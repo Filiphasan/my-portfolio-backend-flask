@@ -55,7 +55,7 @@ article_add_edit_model = article_ns.model("ArticleAddEditModel",{
     "tags": fields.List(fields.Integer())
 })
 
-@article_ns.route("/")
+@article_ns.route("")
 class ArticlesResource(Resource):
     @article_ns.doc("Get Article List")
     @article_ns.response(200, "Success", [article_get_list_model])

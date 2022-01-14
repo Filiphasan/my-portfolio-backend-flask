@@ -39,7 +39,7 @@ project_add_edit_model = project_ns.model("ProjectAddEdirModel",{
     "project_stacks": fields.List(fields.Integer())
 })
 
-@project_ns.route("/")
+@project_ns.route("")
 class ProjectsResource(Resource):
     @project_ns.doc("Get Project List")
     @project_ns.response(200, "Success", [project_get_model])

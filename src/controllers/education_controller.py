@@ -27,7 +27,7 @@ education_add_edit_model = education_ns.model("EducationAddEditModel", {
     "description": fields.String()
 })
 
-@education_ns.route("/")
+@education_ns.route("")
 class EducationsResource(Resource):
     @education_ns.doc("Get Education List")
     @education_ns.response(200, "Success", [education_get_model])

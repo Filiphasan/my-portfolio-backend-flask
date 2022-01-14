@@ -23,7 +23,7 @@ tech_stack_add_edit_model = tech_ns.model("TechStackAddEditModel", {
     "is_icon_devicon": fields.Boolean()
 })
 
-@tech_ns.route("/")
+@tech_ns.route("")
 class TechsResource(Resource):
     @tech_ns.doc("Get Tech Stack List")
     @tech_ns.response(200, "Success", [tech_stack_get_model])

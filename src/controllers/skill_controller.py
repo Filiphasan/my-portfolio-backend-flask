@@ -21,7 +21,7 @@ skill_add_edit_model = skill_ns.model("SkillAddOrEditModel", {
     "is_icon_svg": fields.Boolean(required=True)
 })
 
-@skill_ns.route("/")
+@skill_ns.route("")
 class SkillsResource(Resource):
     @skill_ns.doc("Get Skill List")
     @skill_ns.response(200, "Success", [skill_get_model])

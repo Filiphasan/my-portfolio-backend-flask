@@ -20,7 +20,7 @@ category_add_edit_model = category_ns.model("CategoryAddEditModel", {
     "is_icon_svg": fields.Boolean()
 })
 
-@category_ns.route("/")
+@category_ns.route("")
 class CategoriesResource(Resource):
     @category_ns.doc("Get Category List")
     @category_ns.response(200, "Success", [category_get_model])

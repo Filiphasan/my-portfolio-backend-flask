@@ -39,7 +39,7 @@ experience_add_edit_model = experience_ns.model("ExperienceAddEditModel", {
 })
 
 
-@experience_ns.route("/")
+@experience_ns.route("")
 class ExperiencesResource(Resource):
     @experience_ns.doc("Get Experience List")
     @experience_ns.response(200, "Success", [experience_get_model])

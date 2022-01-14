@@ -16,7 +16,7 @@ tag_add_edit_model = tag_ns.model("TagAddEditModel",{
     "name":fields.String()
 })
 
-@tag_ns.route("/")
+@tag_ns.route("")
 class TagsResource(Resource):
     @tag_ns.doc("Get Tag List")
     @tag_ns.response(200, "Success",[tag_get_model])

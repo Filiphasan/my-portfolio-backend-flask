@@ -15,7 +15,7 @@ comment_add_edit_model = comment_ns.model("CommentAddModel",{
     "comment": fields.String()
 })
 
-@comment_ns.route("/")
+@comment_ns.route("")
 class CommentsResource(Resource):
     @comment_ns.doc("Add Comment")
     @comment_ns.expect(comment_add_edit_model)
