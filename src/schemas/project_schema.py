@@ -1,5 +1,6 @@
 from marshmallow import Schema, fields, validate
 from src.schemas.messages.project import ProjectMessage
+from src.schemas.project_stack_schema import ProjectStackGetSchema
 
 class ProjectAddEditSchema(Schema):
     name = fields.String(
@@ -45,3 +46,14 @@ class ProjectAddEditSchema(Schema):
         validate=validate.Length(min=1, error=ProjectMessage.STACKS_LEN_MSG),
         error_messages={"required":ProjectMessage.STACKS_REQ_MSG}
     )
+
+class ProjectGetSchema(Schema):
+    id = fields.Integer()
+    name = fields.String()
+    description = fields.String()
+    release_date = fields.Date(format="%Y-%m-%d")
+    has_repo = fields.Boolean()
+    repo_url = fields.String()
+    has_demo = fields.Boolean()
+    demo_url = fields.String()
+    project_stacks = fields.List(fields.Nested(ProjectStackGetSchema))

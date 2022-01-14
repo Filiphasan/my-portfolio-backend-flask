@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 from db import db
 
 from src.models.base import BaseModel
@@ -16,10 +16,10 @@ class ProjectModel(db.Model, BaseModel):
     demo_url = db.Column(db.String(240), nullable=True)
     project_stacks = db.relationship("ProjectStackModel", backref='projects', lazy=True)
 
-    def __init__(self, name: str, description: str, release_date: str, has_repo: bool, repo_url, has_demo: str, demo_url):
+    def __init__(self, name: str, description: str, release_date: date, has_repo: bool, repo_url, has_demo: str, demo_url):
         self.name = name
         self.description = description
-        self.release_date = datetime.strptime(release_date, "%Y-%m-%d")
+        self.release_date = release_date
         self.has_repo = has_repo
         self.repo_url = repo_url
         self.has_demo = has_demo
