@@ -16,6 +16,14 @@ def success_data_response_with_pagination(data, code: int, page: int, item_count
         "page_count": page_count 
     }
 
+def success_upload_response(file_path: str, message: str, code: int):
+    return {
+        "status":"success",
+        "status-code":code,
+        "file": file_path,
+        "message": message
+    }
+
 def success_token_response(token: str, code: int):
     return {
         "status":"success",

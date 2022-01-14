@@ -24,8 +24,8 @@ from src.controllers.article_controller import ArticlesResource, ArticlesCategor
 from src.controllers.tag_controller import TagsResource, TagResource, tag_ns
 from src.controllers.comment_controller import CommentsResource, CommentResource, comment_ns
 from src.controllers.project_controller import ProjectsResource, ProjectResource, project_ns
+from src.controllers.upload_controller import UploadsResource, upload_ns
 
-#Import db table classes because alembic doesn't detected table models. User doesn't need import because user resource import user service and user service import user model.
 
 app = Flask(__name__)
 
@@ -61,6 +61,7 @@ api.add_namespace(article_ns)
 api.add_namespace(tag_ns)
 api.add_namespace(comment_ns)
 api.add_namespace(project_ns)
+api.add_namespace(upload_ns)
 
 #Implement Resource In NameSpace right below
 user_ns.add_resource(UserResource, '/<id>')
@@ -91,6 +92,7 @@ comment_ns.add_resource(CommentsResource, '')
 comment_ns.add_resource(CommentResource, '/<id>')
 project_ns.add_resource(ProjectsResource, '')
 project_ns.add_resource(ProjectResource, '/<id>')
+upload_ns.add_resource(UploadsResource, '')
 
 @app.before_first_request
 def create_table():
