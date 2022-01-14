@@ -10,5 +10,4 @@ class UploadsResource(Resource):
     @upload_ns.doc("Upload File")
     def post(self):
         file = request.files.get("file")
-        print(file)
         return upload_file(file)
