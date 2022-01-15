@@ -39,7 +39,7 @@ def save_new_user(user_data):
 
 def get_all_users(is_deleted=False, email_confirmed=True):
     try:
-        users = UsersModel.query.filter_by(is_deleted=is_deleted, email_confirmed=email_confirmed).all()
+        users = UsersModel.query.all()
         if users:
             data = users_schema.dump(users)
             return success_data_response(data, 200)
@@ -99,6 +99,8 @@ def edit_user_password(id: str, data):
     try:
         new_password = data["new_password"]
         old_password = data["old_password"]
+        if new_password == old_password:
+            return error_response(ServiceMessage.NEW_AND_OLD_PW_SAME, 400)
         user = UsersModel.query.get(id)
         old_pw_hash = hashlib.md5(old_password.encode()).hexdigest()
         if user:

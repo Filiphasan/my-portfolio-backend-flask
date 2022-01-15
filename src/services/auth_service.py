@@ -20,19 +20,19 @@ def login(data):
             if not user.email_confirmed:
                 return error_response(ServiceMessage.MAIL_NOT_CONFIRMED, 401)
             else:
-                token = create_token(user=user, role="user")
+                token = create_token(user=user)
                 return success_token_response(token, 200)
         else:
             return error_response(ServiceMessage.NOT_FOUND, 404)
     except Exception as error:
         return error_response(ServiceMessage.SERVER_ERROR, 500)
 
-def create_token(user: UsersModel, role: str):
+def create_token(user: UsersModel):
     token = jwt.encode({
         'sub': user.id,
         'exp': datetime.datetime.now()+datetime.timedelta(minutes=120),
         'iat': datetime.datetime.now(),
-        'roles': role
+        'role': user.role
     },secret_key, algorithm='HS256')
     return token
 

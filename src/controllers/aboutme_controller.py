@@ -3,6 +3,8 @@ from flask import request
 
 from src.services.aboutme_service import list_aboutme, get_about_me, edit_about_me
 from src.schemas.aboutme_schema import AboutMeSchema
+from src.utils.decorator import role_required
+from src.utils.role_enum import Roles
 
 aboutme_ns = Namespace('aboutme', "About Me RUD Operations")
 

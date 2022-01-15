@@ -5,6 +5,7 @@ class ServiceMessage:
     MAIL_ALREADY_EXIST = "Email already exist!"
     MAIL_NOT_CONFIRMED = "Email not confirmed!"
     MAIL_OR_PASSWORD_WRONG = "Email or Password is wrong!"
+    NEW_AND_OLD_PW_SAME = "New password andOld password can't be the same!"
     PASSWORD_UPDATE_SUCCESS = "Successfully edit password."
     MSG_SUCCESS_ADD = "Message success send."
     UPLOAD_SUCCESS = "File Upload success."
