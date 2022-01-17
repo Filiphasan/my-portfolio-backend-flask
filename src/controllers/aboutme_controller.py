@@ -35,7 +35,7 @@ aboutme_update_schema = AboutMeSchema()
 
 @aboutme_ns.route("")
 class AboutMeListResource(Resource):
-    @aboutme_ns.doc("Get About Me List")
+    @aboutme_ns.doc("Get About Me List", security="JWTTokenAuth")
     @aboutme_ns.response(200, "Get List Success", [aboutme_get_model])
     @role_required(roles=[Roles.admin.value])
     def get(self):
@@ -51,13 +51,13 @@ class AboutMePublicResource(Resource):
 @aboutme_ns.route("/<id>")
 @aboutme_ns.param("id","About Me Id Field (UUID)")
 class AboutMeResource(Resource):
-    @aboutme_ns.doc("Get About Me")
+    @aboutme_ns.doc("Get About Me", security="JWTTokenAuth")
     @aboutme_ns.response(200, "Get Success", aboutme_get_model)
     @role_required(roles=[Roles.admin.value])
     def get(self, id):
         return get_about_me(id)
     
-    @aboutme_ns.doc("Update About Me")
+    @aboutme_ns.doc("Update About Me", security="JWTTokenAuth")
     @aboutme_ns.expect(aboutme_update_model)
     @aboutme_ns.response(200, "Update Success", aboutme_get_model)
     @role_required(roles=[Roles.admin.value])
