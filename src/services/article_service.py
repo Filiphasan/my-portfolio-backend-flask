@@ -23,6 +23,17 @@ def list_article():
     except Exception as error:
         return error_response(ServiceMessage.SERVER_ERROR, 500)
 
+def list_article_non_delete():
+    try:
+        articles = ArticleModel.query.filter_by(is_deleted=False).all()
+        if articles:
+            data = article_list_schema.dump(articles)
+            return success_data_response(data, 200)
+        else:
+            return error_response(ServiceMessage.NOT_FOUND, 404)
+    except Exception as error:
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
+
 def list_article_by_category(category_id):
     try:
         articles = ArticleModel.query.filter_by(category_id=category_id).all()

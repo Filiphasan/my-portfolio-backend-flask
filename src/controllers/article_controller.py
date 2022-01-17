@@ -1,12 +1,15 @@
 from flask_restx import Resource, Namespace, fields
 from flask import request
 
-from src.services.article_service import list_article, list_article_by_category, list_article_by_tag, get_article, add_article, edit_article, soft_delete_article
+from src.services.article_service import list_article, list_article_non_delete, list_article_by_category, list_article_by_tag, get_article, add_article, edit_article, soft_delete_article
 from src.schemas.article_schema import ArticleAddEditSchema
+from src.utils.decorator import role_required
+from src.utils.role_enum import Roles
+from src.controllers import authorizations
 
 article_add_edit_schema = ArticleAddEditSchema()
 
-article_ns = Namespace("article", "Article CRUD Operations")
+article_ns = Namespace("article", "Article CRUD Operations", authorizations=authorizations)
 
 category_model = article_ns.model("CategoryModelForArticle",{
     "id": fields.Integer(),
@@ -57,18 +60,27 @@ article_add_edit_model = article_ns.model("ArticleAddEditModel",{
 
 @article_ns.route("")
 class ArticlesResource(Resource):
-    @article_ns.doc("Get Article List")
+    @article_ns.doc("Get Article List", security="JWTTokenAuth")
     @article_ns.response(200, "Success", [article_get_list_model])
+    @role_required(roles=[Roles.admin.value])
     def get(self):
         return list_article()
     
-    @article_ns.doc("Add Article")
+    @article_ns.doc("Add Article", security="JWTTokenAuth")
     @article_ns.response(201, "Success", article_get_model)
     @article_ns.expect(article_add_edit_model)
+    @role_required(roles=[Roles.admin.value, Roles.author.value])
     def post(self):
         req_json = request.get_json()
         data = article_add_edit_schema.load(req_json)
         return add_article(data)
+
+@article_ns.route("/public")
+class ArticlesPublicResource(Resource):
+    @article_ns.doc("Get Article List")
+    @article_ns.response(200, "Success", [article_get_list_model])
+    def get(self):
+        return list_article_non_delete()
 
 @article_ns.route("/category/<category_id>")
 @article_ns.param("category_id", "Category Identity Number")
@@ -94,14 +106,16 @@ class ArticleResource(Resource):
     def get(self, id):
         return get_article(id)
     
-    @article_ns.doc("Edit Article")
+    @article_ns.doc("Edit Article", security="JWTTokenAuth")
     @article_ns.response(200, "Success", article_get_model)
     @article_ns.expect(article_add_edit_model)
+    @role_required(roles=[Roles.admin.value, Roles.author.value])
     def put(self, id):
         req_json = request.get_json()
         data =article_add_edit_schema.load(req_json)
         return edit_article(id, data)
     
-    @article_ns.doc("Delete Article")
+    @article_ns.doc("Delete Article", security="JWTTokenAuth")
+    @role_required(roles=[Roles.admin.value])
     def delete(self, id):
         return soft_delete_article(id)

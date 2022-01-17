@@ -20,6 +20,17 @@ def list_category():
     except Exception as error:
         return error_response(ServiceMessage.SERVER_ERROR, 500)
 
+def list_category_non_delete():
+    try:
+        categories = CategoryModel.query.filter_by(is_deleted=False).all()
+        if categories:
+            data = category_list_schema.dump(categories)
+            return success_data_response(data, 200)
+        else:
+            return error_response(ServiceMessage.NOT_FOUND, 404)
+    except Exception as error:
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
+
 def get_category(id):
     try:
         category = CategoryModel.query.get(id)

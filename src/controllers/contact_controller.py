@@ -3,10 +3,13 @@ from flask import request
 
 from src.schemas.contact_schema import ContactAddSchema
 from src.services.contact_service import list_contact, get_contact, add_contact, delete_contact
+from src.utils.decorator import role_required
+from src.utils.role_enum import Roles
+from src.controllers import authorizations
 
 contact_add_schema = ContactAddSchema()
 
-contact_ns = Namespace("contact", "Contact CRUD Operations")
+contact_ns = Namespace("contact", "Contact CRUD Operations", authorizations=authorizations)
 
 contact_get_model = contact_ns.model("ContactGetModel", {
     "id": fields.Integer(),
@@ -26,8 +29,9 @@ contact_add_model = contact_ns.model("ContactAddModel", {
 
 @contact_ns.route("")
 class ContactsResource(Resource):
-    @contact_ns.doc("Get Contact List")
+    @contact_ns.doc("Get Contact List", security="JWTTokenAuth")
     @contact_ns.response(200, "Success", [contact_get_model])
+    @role_required(roles=[Roles.admin.value])
     def get(self):
         return list_contact()
     
@@ -41,11 +45,13 @@ class ContactsResource(Resource):
 @contact_ns.route("/<id>")
 @contact_ns.param("id", "Contact Identity Number")
 class ContactResource(Resource):
-    @contact_ns.doc("Get Contact")
+    @contact_ns.doc("Get Contact", security="JWTTokenAuth")
     @contact_ns.response(200, "Success", contact_get_model)
+    @role_required(roles=[Roles.admin.value])
     def get(self, id):
         return get_contact(id)
     
-    @contact_ns.doc("Delete Contact")
+    @contact_ns.doc("Delete Contact", security="JWTTokenAuth")
+    @role_required(roles=[Roles.admin.value])
     def delete(self, id):
         return delete_contact(id)

@@ -12,18 +12,18 @@ import os
 from src.utils.data_seed import seed_data
 from src.controllers.user_controller import UserResource, UserListResource, user_ns
 from src.controllers.auth_controller import AuthResource, auth_ns
-from src.controllers.aboutme_controller import AboutMeListResource, AboutMeResource, aboutme_ns
-from src.controllers.skill_controller import SkillResource, SkillsResource, skill_ns
-from src.controllers.education_controller import EducationsResource, EducationResource, education_ns
-from src.controllers.tech_stack_controller import TechStackResource, TechsResource, tech_ns
-from src.controllers.experience_controller import ExperiencesResource, ExperienceResource, experience_ns
-from src.controllers.interest_controller import InterestsResource, InterestResource, interest_ns
+from src.controllers.aboutme_controller import AboutMeListResource, AboutMeResource, AboutMePublicResource, aboutme_ns
+from src.controllers.skill_controller import SkillResource, SkillsResource, SkillPublicResource, skill_ns
+from src.controllers.education_controller import EducationsResource, EducationResource, EducationPublicResource, education_ns
+from src.controllers.tech_stack_controller import TechStackResource, TechsResource, TechPublicResource, tech_ns
+from src.controllers.experience_controller import ExperiencesResource, ExperienceResource, ExperiencePublicResource, experience_ns
+from src.controllers.interest_controller import InterestsResource, InterestResource, InterestPublicResource, interest_ns
 from src.controllers.contact_controller import ContactsResource, ContactResource, contact_ns
-from src.controllers.category_controller import CategoriesResource, CategoryResource, category_ns
-from src.controllers.article_controller import ArticlesResource, ArticlesCategoryResource, ArticleResource, article_ns
-from src.controllers.tag_controller import TagsResource, TagResource, tag_ns
+from src.controllers.category_controller import CategoriesResource, CategoryResource, CategoryPublicResource, category_ns
+from src.controllers.article_controller import ArticlesResource, ArticlesCategoryResource, ArticleResource, ArticlesTagResource, ArticlesPublicResource, article_ns
+from src.controllers.tag_controller import TagsResource, TagResource, TagsPublicResource, tag_ns
 from src.controllers.comment_controller import CommentsResource, CommentResource, comment_ns
-from src.controllers.project_controller import ProjectsResource, ProjectResource, project_ns
+from src.controllers.project_controller import ProjectsResource, ProjectResource, ProjectsPublicResource, project_ns
 from src.controllers.upload_controller import UploadsResource, upload_ns
 
 
@@ -69,29 +69,40 @@ user_ns.add_resource(UserListResource, '')
 auth_ns.add_resource(AuthResource, '')
 aboutme_ns.add_resource(AboutMeListResource, '')
 aboutme_ns.add_resource(AboutMeResource, '/<id>')
+aboutme_ns.add_resource(AboutMePublicResource, '/public')
 skill_ns.add_resource(SkillResource, '/<id>')
 skill_ns.add_resource(SkillsResource, '')
+skill_ns.add_resource(SkillPublicResource, '/public')
 education_ns.add_resource(EducationsResource, '')
 education_ns.add_resource(EducationResource, '/<id>')
+education_ns.add_resource(EducationPublicResource, '/public')
 tech_ns.add_resource(TechsResource, '')
 tech_ns.add_resource(TechStackResource, '/<id>')
+tech_ns.add_resource(TechPublicResource, '/public')
 experience_ns.add_resource(ExperiencesResource, '')
 experience_ns.add_resource(ExperienceResource, '/<id>')
+experience_ns.add_resource(ExperiencePublicResource, '/public')
 interest_ns.add_resource(InterestsResource, '')
 interest_ns.add_resource(InterestResource, '/<id>')
+interest_ns.add_resource(InterestPublicResource, '/public')
 contact_ns.add_resource(ContactsResource, '')
 contact_ns.add_resource(ContactResource, '/<id>')
 category_ns.add_resource(CategoriesResource, '')
 category_ns.add_resource(CategoryResource, '/<id>')
+category_ns.add_resource(CategoryPublicResource, '/public')
 article_ns.add_resource(ArticlesCategoryResource, '/category/<category_id>')
+article_ns.add_resource(ArticlesTagResource, '/tag/<tag_id>')
 article_ns.add_resource(ArticlesResource, '')
 article_ns.add_resource(ArticleResource, '/<id>')
+article_ns.add_resource(ArticlesPublicResource, '/public')
 tag_ns.add_resource(TagsResource, '')
 tag_ns.add_resource(TagResource, '/<id>')
+tag_ns.add_resource(TagsPublicResource, '/public')
 comment_ns.add_resource(CommentsResource, '')
 comment_ns.add_resource(CommentResource, '/<id>')
 project_ns.add_resource(ProjectsResource, '')
 project_ns.add_resource(ProjectResource, '/<id>')
+project_ns.add_resource(ProjectsPublicResource, '/public')
 upload_ns.add_resource(UploadsResource, '')
 
 @app.before_first_request

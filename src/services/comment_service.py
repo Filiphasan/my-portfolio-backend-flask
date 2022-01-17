@@ -14,7 +14,7 @@ def add_comment(data):
         )
         db.session.add(new_comment)
         db.session.commit()
-        return success_response("Comment successfully created.", 201)
+        return success_response("Comment successfully added.", 201)
     except Exception as error:
         return error_response(ServiceMessage.SERVER_ERROR, 500)
 

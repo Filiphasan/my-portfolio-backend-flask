@@ -21,6 +21,17 @@ def list_tag():
     except Exception as error:
         return error_response(ServiceMessage.SERVER_ERROR, 500)
 
+def list_tag_non_delete():
+    try:
+        tags = TagModel.query.filter_by(is_deleted=False).all()
+        if tags:
+            data = tag_list_schema.dump(tags)
+            return success_data_response(data, 200)
+        else:
+            return error_response(ServiceMessage.NOT_FOUND, 404)
+    except Exception as error:
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
+
 def get_tag(id):
     try:
         tag = TagModel.query.get(id)

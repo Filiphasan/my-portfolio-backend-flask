@@ -11,7 +11,7 @@ tech_stack_list_schema = TechStachGetSchema(many=True)
 
 def list_tech_stack():
     try:
-        tech_stacks = TechStackModel.query.filter_by(is_deleted=False).all()
+        tech_stacks = TechStackModel.query.all()
         if tech_stacks:
             data = tech_stack_list_schema.dump(tech_stacks)
             return success_data_response(data, 200)
@@ -20,6 +20,16 @@ def list_tech_stack():
     except Exception as error:
         return error_response(ServiceMessage.SERVER_ERROR, 500)
 
+def list_tech_stack_non_delete():
+    try:
+        tech_stacks = TechStackModel.query.filter_by(is_deleted=False).all()
+        if tech_stacks:
+            data = tech_stack_list_schema.dump(tech_stacks)
+            return success_data_response(data, 200)
+        else:
+            return error_response(ServiceMessage.NOT_FOUND, 404)
+    except Exception as error:
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
 
 def get_tech_stack(id):
     try:

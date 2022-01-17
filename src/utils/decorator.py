@@ -4,9 +4,13 @@ from flask import request
 import jwt
 import os
 
-from src.utils import token_not_found_obj, invalid_token_obj, not_authorized_obj
+from src.utils.response import error_response
 
 secret_key = os.environ.get("SECRET_KEY", 'application_secret_key')
+
+TOKEN_NOT_FOUND = "Token not found!"
+INVALID_TOKEN = "Invalid token!"
+NOT_AUTH_AREA = "You don't have access this area!"
 
 def token_required(func):
     @wraps(func)
@@ -16,14 +20,14 @@ def token_required(func):
             tokenArr = bearer_token.split(" ")
             token = tokenArr[1]
             if not token:
-                return token_not_found_obj, 401
+                return error_response(TOKEN_NOT_FOUND, 401)
             try:
                 data = jwt.decode(
                     token, secret_key, algorithms="HS256")
             except:
-                return invalid_token_obj, 403
+                return error_response(INVALID_TOKEN, 403)
         else:
-            return token_not_found_obj, 401
+            return error_response(TOKEN_NOT_FOUND, 401)
         return func(*args, **kwargs)
     return wrapped
 
@@ -36,17 +40,17 @@ def role_required(roles):
                 tokenArr = bearer_token.split(" ")
                 token = tokenArr[1]
                 if not token:
-                    return token_not_found_obj, 401
+                    return error_response(TOKEN_NOT_FOUND, 401)
                 try:
                     data = jwt.decode(
                         token, secret_key, algorithms="HS256")
                     user_role = data["role"]
                     if user_role not in roles:                     
-                        return not_authorized_obj, 401
+                        return error_response(NOT_AUTH_AREA, 401)
                 except:
-                    return invalid_token_obj, 403
+                    return error_response(INVALID_TOKEN, 403)
             else:   
-                return token_not_found_obj, 401
+                return error_response(TOKEN_NOT_FOUND, 401)
             return func(*args, **kwargs)
         return wrapped
     return decorator

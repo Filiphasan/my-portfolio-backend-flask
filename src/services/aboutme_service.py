@@ -11,6 +11,17 @@ aboutme_schema = AboutMeGetSchema()
 
 def list_aboutme():
     try:
+        about_mes = AboutMeModel.query.all()
+        if about_mes:
+            data = aboutmes_schema.dump(about_mes)
+            return success_data_response(data, 200)
+        else:
+            return error_response(ServiceMessage.NOT_FOUND, 404)
+    except Exception as error:
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
+
+def list_aboutme_non_delete():
+    try:
         about_mes = AboutMeModel.query.filter_by(is_deleted=False).all()
         if about_mes:
             data = aboutmes_schema.dump(about_mes)
@@ -20,7 +31,7 @@ def list_aboutme():
     except Exception as error:
         return error_response(ServiceMessage.SERVER_ERROR, 500)
 
-def get_about_me(id: str):
+def get_about_me(id):
     try:
         about_me = AboutMeModel.query.get(id)
         if about_me:

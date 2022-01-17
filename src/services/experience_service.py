@@ -12,6 +12,17 @@ experience_list_schema = ExperienceGetSchema(many=True)
 
 def list_experience():
     try:
+        experiences = ExperienceModel.query.all()
+        if experiences:
+            data = experience_list_schema.dump(experiences)
+            return success_data_response(data, 200)
+        else:
+            return error_response(ServiceMessage.NOT_FOUND, 404)
+    except Exception as error:
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
+
+def list_experience_non_delete():
+    try:
         experiences = ExperienceModel.query.filter_by(is_deleted=False).all()
         if experiences:
             data = experience_list_schema.dump(experiences)

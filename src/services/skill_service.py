@@ -11,6 +11,17 @@ skill_list_schema = SkillGetSchema(many=True)
 
 def list_skills():
     try:
+        skills = SkillModel.query.all()
+        if skills:
+            data = skill_list_schema.dump(skills)
+            return success_data_response(data, 200)
+        else:
+            return error_response(ServiceMessage.NOT_FOUND)
+    except Exception as error:
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
+
+def list_skill_non_delete():
+    try:
         skills = SkillModel.query.filter_by(is_deleted=False).all()
         if skills:
             data = skill_list_schema.dump(skills)

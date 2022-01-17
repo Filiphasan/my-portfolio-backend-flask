@@ -11,6 +11,17 @@ interst_list_schema = InterestGetSchema(many=True)
 
 def list_interest():
     try:
+        interests = InterestModel.query.all()
+        if interests:
+            data =interst_list_schema.dump(interests)
+            return success_data_response(data, 200)
+        else:
+            return error_response(ServiceMessage.NOT_FOUND, 404)
+    except Exception as error:
+        return error_response(ServiceMessage.SERVER_ERROR, 500)
+
+def list_interest_non_delete():
+    try:
         interests = InterestModel.query.filter_by(is_deleted=False).all()
         if interests:
             data =interst_list_schema.dump(interests)
