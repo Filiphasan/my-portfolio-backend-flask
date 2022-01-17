@@ -5,6 +5,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+static/uploads/*
+!static/uploads/makas-11642428882.6348.png
 
 # Others
 __pycache__/
