@@ -1,4 +1,3 @@
-from os import error
 import uuid
 import datetime
 import hashlib

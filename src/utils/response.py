@@ -16,11 +16,12 @@ def success_data_response_with_pagination(data, code: int, page: int, item_count
         "page_count": page_count 
     }
 
-def success_upload_response(file_path: str, message: str, code: int):
+def success_upload_response(file_path: str, server_url: str, message: str, code: int):
     return {
         "status":"success",
         "status-code":code,
         "file": file_path,
+        "server-url": server_url,
         "message": message
     }
 

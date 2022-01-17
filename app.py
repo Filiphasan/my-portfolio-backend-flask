@@ -114,7 +114,7 @@ def create_table():
 # If Marshmallow load data not successful, Marshmallow return ValidationError and error descriptions.
 @app.errorhandler(ValidationError)
 def handle_validation_error(error):
-    return jsonify({"status":"error", "status-code":"400", "errors":error.messages}), 400
+    return jsonify({"status":"error", "status-code":400, "errors":error.messages}), 400
 
 # Global Error Handling
 @app.errorhandler(Exception)
@@ -123,7 +123,7 @@ def handler_global_error(error):
     if isinstance(error, HTTPException):
         code = error.code
     # return jsonify({"status":"error","message":"Ooops! Something went wrong!"}), code #This is for production.
-    return jsonify({"status":"error","message":str(error)}), code
+    return jsonify({"status":"error", "status-code":code,"message":str(error)}), code
 
 if __name__ == "__main__":
     # db.init_app(app)
