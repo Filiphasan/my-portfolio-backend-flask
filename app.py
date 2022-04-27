@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from marshmallow import ValidationError
 from werkzeug.exceptions import HTTPException
 from flask_restx import Api
+from flask_cors import CORS
 
 from db import db
 from ma import ma
@@ -28,6 +29,7 @@ from src.controllers.upload_controller import UploadsResource, upload_ns
 
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def server():
