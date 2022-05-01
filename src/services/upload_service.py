@@ -23,7 +23,7 @@ def upload_file(file):
             )
             db.session.add(new_upload)
             db.session.commit()
-            return success_upload_response(file_path, file_path, ServiceMessage.UPLOAD_SUCCESS, 200)
+            return success_upload_response(file_path, upload_path, ServiceMessage.UPLOAD_SUCCESS, 200)
         else:
             return error_response(ServiceMessage.NOT_FOUND, 404)
     except Exception as error:
