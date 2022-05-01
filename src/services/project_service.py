@@ -24,7 +24,7 @@ def list_project():
 
 def list_project_non_delete():
     try:
-        projects = ProjectModel.queryfilter_by(is_deleted=False).all()
+        projects = ProjectModel.query.filter_by(is_deleted=False).all()
         if projects:
             data = project_list_schema.dump(projects)
             return success_data_response(data, 200)

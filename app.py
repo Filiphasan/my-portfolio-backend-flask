@@ -36,7 +36,7 @@ def server():
     return "Server is Working!"
 
 blueprint = Blueprint("api", __name__, url_prefix="/api")
-api = Api(blueprint, doc='/doc', title='Flask Rest Structure')
+api = Api(blueprint, doc='/doc', title='My Portfolio BE Flask')
 app.register_blueprint(blueprint)
 
 load_dotenv(".env")
