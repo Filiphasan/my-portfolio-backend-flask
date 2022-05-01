@@ -27,7 +27,6 @@ from src.controllers.comment_controller import CommentsResource, CommentResource
 from src.controllers.project_controller import ProjectsResource, ProjectResource, ProjectsPublicResource, project_ns
 from src.controllers.upload_controller import UploadsResource, upload_ns
 
-
 app = Flask(__name__)
 CORS(app)
 
